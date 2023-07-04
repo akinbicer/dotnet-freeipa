@@ -9,7 +9,18 @@
     <Authors>Akın BİÇER</Authors>
     <Description>FreeIPA.DotNet is a client library for interacting with the FreeIPA API on the .NET platform. This library simplifies the HTTP requests required to communicate with a FreeIPA server.</Description>
     <PackageProjectUrl>https://github.com/akinbicer/dotnet-freeipa</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/akinbicer/dotnet-freeipa</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>freeipa, ipa</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
