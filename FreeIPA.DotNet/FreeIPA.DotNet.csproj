@@ -4,6 +4,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>FreeIPA.DotNet</Title>
+    <Authors>Akın BİÇER</Authors>
+    <Description>FreeIPA.DotNet is a client library for interacting with the FreeIPA API on the .NET platform. This library simplifies the HTTP requests required to communicate with a FreeIPA server.</Description>
+    <PackageProjectUrl>https://github.com/akinbicer/dotnet-freeipa</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
