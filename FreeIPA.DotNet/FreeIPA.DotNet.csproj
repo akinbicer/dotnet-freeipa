@@ -1,39 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>FreeIPA.DotNet</Title>
-    <Authors>Akın BİÇER</Authors>
-    <Description>FreeIPA.DotNet is a client library for interacting with the FreeIPA API on the .NET platform. This library simplifies the HTTP requests required to communicate with a FreeIPA server.</Description>
-    <PackageProjectUrl>https://github.com/akinbicer/dotnet-freeipa</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/akinbicer/dotnet-freeipa</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>freeipa, ipa</PackageTags>
-    <PackageIcon>package-icon.png</PackageIcon>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Version>1.0.1</Version>
+		<PackageVersion>1.0.1</PackageVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>FreeIPA.DotNet</Title>
+		<Authors>Akın BİÇER</Authors>
+		<Description>FreeIPA.DotNet is a client library for interacting with the FreeIPA API on the .NET platform. This library simplifies the HTTP requests required to communicate with a FreeIPA server.</Description>
+		<PackageProjectUrl>https://github.com/akinbicer/dotnet-freeipa</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/akinbicer/dotnet-freeipa</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>freeipa, ipa</PackageTags>
+		<PackageIcon>package-icon.png</PackageIcon>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<Copyright>Akın BİÇER © 2023 All Rights Reserved. Services are provided within the framework of the rules specified in the Privacy, Use and Copyright notice.</Copyright>
+		<PackageId>FreeIPA.DotNet</PackageId>
+		<PackageReleaseNotes>- Added user actions.
+- Added custom transaction messages.</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\package-icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\package-icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 
 </Project>
