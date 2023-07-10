@@ -1,6 +1,6 @@
-﻿namespace FreeIPA.DotNet.Models.Login;
+﻿namespace FreeIPA.DotNet.Dtos.Login;
 
-public class IpaLoginResponseModel
+public class IpaLoginResponseDto
 {
     public int Code { get; set; }
     public string? Message { get; set; }

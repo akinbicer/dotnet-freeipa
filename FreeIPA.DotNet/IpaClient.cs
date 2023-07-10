@@ -1,12 +1,11 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text;
 using FreeIPA.DotNet.Constants;
-using FreeIPA.DotNet.Models;
-using FreeIPA.DotNet.Models.Login;
-using FreeIPA.DotNet.Models.RPC;
-using FreeIPA.DotNet.Models.User;
+using FreeIPA.DotNet.Dtos;
+using FreeIPA.DotNet.Dtos.Login;
+using FreeIPA.DotNet.Dtos.RPC;
+using FreeIPA.DotNet.Dtos.User.Create;
 using Newtonsoft.Json;
 
 namespace FreeIPA.DotNet;
@@ -53,12 +52,12 @@ public class IpaClient : IDisposable
         _client.Dispose();
     }
 
-    public async Task<IpaResultModel<IpaLoginResponseModel>> LoginWithPassword(IpaLoginRequestModel model)
+    public async Task<IpaResultDto<IpaLoginResponseDto>> LoginWithPassword(IpaLoginRequestDto dto)
     {
         var formData = new List<KeyValuePair<string, string>>
         {
-            new("user", model.Username),
-            new("password", model.Password)
+            new("user", dto.Username),
+            new("password", dto.Password)
         };
 
         var content = new FormUrlEncodedContent(formData);
@@ -67,10 +66,10 @@ public class IpaClient : IDisposable
         if (!response.IsSuccessStatusCode)
             throw new Exception($"Failed to login. Content: {await response.Content.ReadAsStringAsync()}");
 
-        return new IpaResultModel<IpaLoginResponseModel>
+        return new IpaResultDto<IpaLoginResponseDto>
         {
             Success = response.IsSuccessStatusCode,
-            Data = new IpaLoginResponseModel
+            Data = new IpaLoginResponseDto
             {
                 Code = (int)response.StatusCode,
                 Message = await response.Content.ReadAsStringAsync()
@@ -78,13 +77,13 @@ public class IpaClient : IDisposable
         };
     }
 
-    public async Task<IpaResultModel<IpaRpcResponseModel>> SendRpcRequest(IpaRpcRequestModel model)
+    public async Task<IpaResultDto<IpaRpcResponseDto>> SendRpcRequest(IpaRpcRequestDto dto)
     {
         var requestData = new
         {
-            id = model.Id,
-            method = model.Method,
-            @params = model.Parameters,
+            id = dto.Id,
+            method = dto.Method,
+            @params = dto.Parameters,
             version = "2.251"
         };
 
@@ -95,9 +94,9 @@ public class IpaClient : IDisposable
         if (!response.IsSuccessStatusCode)
             throw new Exception($"Something went wrong. Content: {response.Content.ReadAsStringAsync()}");
 
-        var result = JsonConvert.DeserializeObject<IpaRpcResponseModel>(await response.Content.ReadAsStringAsync());
+        var result = JsonConvert.DeserializeObject<IpaRpcResponseDto>(await response.Content.ReadAsStringAsync());
 
-        return new IpaResultModel<IpaRpcResponseModel>
+        return new IpaResultDto<IpaRpcResponseDto>
         {
             Success = result?.Error == null,
             Message = result?.Error == null ? CustomResponseMessage.TransactionSuccess : CustomResponseMessage.TransactionError,
@@ -105,9 +104,11 @@ public class IpaClient : IDisposable
         };
     }
 
-    public async Task<IpaResultModel<IpaCreateUserResponseModel>> CreateUser(IpaCreateUserRequestModel model)
+    #region User Management
+
+    public async Task<IpaResultDto<IpaCreateUserResponseDto>> CreateUser(IpaCreateUserRequestDto dto)
     {
-        var requestModel = new IpaRpcRequestModel
+        var requestDto = new IpaRpcRequestDto
         {
             Id = 0,
             Method = "user_add",
@@ -116,38 +117,36 @@ public class IpaClient : IDisposable
                 Array.Empty<string>(), new
                 {
                     ipauserauthtype = "password",
-                    givenname = model.FirstName,
-                    sn = model.LastName,
-                    cn = $"{model.FirstName} {model.LastName}",
-                    uid = model.Username,
-                    userpassword = model.Password
+                    givenname = dto.FirstName,
+                    sn = dto.LastName,
+                    cn = $"{dto.FirstName} {dto.LastName}",
+                    uid = dto.Username,
+                    userpassword = dto.Password
                 }
             },
             Version = "2.251"
         };
 
-        var data = await SendRpcRequest(requestModel);
+        var data = await SendRpcRequest(requestDto);
         if (data.Success)
-        {
-            return new IpaResultModel<IpaCreateUserResponseModel>()
+            return new IpaResultDto<IpaCreateUserResponseDto>
             {
                 Success = true,
                 Message = CustomResponseMessage.RecordAdded,
-                Data = JsonConvert.DeserializeObject<IpaCreateUserResponseModel>(data!.Data!.Result!.ToString()!)
+                Data = JsonConvert.DeserializeObject<IpaCreateUserResponseDto>(data!.Data!.Result!.ToString()!)
             };
-        }
 
-        return new IpaResultModel<IpaCreateUserResponseModel>
+        return new IpaResultDto<IpaCreateUserResponseDto>
         {
-            Success = false, 
+            Success = false,
             Message = CustomResponseMessage.TransactionError,
             Data = null
         };
     }
 
-    public async Task<IpaResultModel<IpaRpcResponseModel>> DeleteUser(string username)
+    public async Task<IpaResultDto<IpaRpcResponseDto>> DeleteUser(string username)
     {
-        var requestModel = new IpaRpcRequestModel
+        var requestDto = new IpaRpcRequestDto
         {
             Id = 0,
             Method = "user_del",
@@ -155,13 +154,15 @@ public class IpaClient : IDisposable
             {
                 Array.Empty<string>(), new
                 {
-                    uid = username,
+                    uid = username
                 }
             },
             Version = "2.251"
         };
 
-        var result = await SendRpcRequest(requestModel);
+        var result = await SendRpcRequest(requestDto);
         return result;
     }
+
+    #endregion
 }

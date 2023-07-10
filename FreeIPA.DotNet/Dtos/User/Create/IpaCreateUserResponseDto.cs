@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace FreeIPA.DotNet.Models.User;
+namespace FreeIPA.DotNet.Dtos.User.Create;
 
-public class IpaCreateUserResponseModel
+public class IpaCreateUserResponseDto
 {
     [JsonProperty("result")] public Result? Result { get; set; }
     [JsonProperty("value")] public string? Value { get; set; }
@@ -48,7 +48,10 @@ public class Result
     [JsonProperty("uidnumber")] public List<string>? UniqueIdNumber { get; set; }
     [JsonProperty("initials")] public List<string>? Initials { get; set; }
     [JsonProperty("gidnumber")] public List<string>? GidNumber { get; set; }
-    [JsonProperty("krbpasswordexpiration")] public List<string>? KerberosPasswordExpiration { get; set; }
+
+    [JsonProperty("krbpasswordexpiration")]
+    public List<string>? KerberosPasswordExpiration { get; set; }
+
     [JsonProperty("krblastpwdchange")] public List<string>? KerberosLastPwdChange { get; set; }
     [JsonProperty("krbextradata")] public List<KerberosExtraData>? KerberosExtraData { get; set; }
     [JsonProperty("mepmanagedentry")] public List<string>? MepManagedEntry { get; set; }

@@ -1,6 +1,8 @@
-﻿namespace FreeIPA.DotNet.Models;
+﻿using FreeIPA.DotNet.Dtos.RPC;
 
-public class IpaResultModel<T>
+namespace FreeIPA.DotNet.Dtos;
+
+public class IpaResultDto<T>
 {
     public bool Success { get; set; }
     public string? Message { get; set; }

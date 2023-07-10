@@ -1,6 +1,6 @@
-﻿namespace FreeIPA.DotNet.Models.Login;
+﻿namespace FreeIPA.DotNet.Dtos.Login;
 
-public class IpaLoginRequestModel
+public class IpaLoginRequestDto
 {
     public required string Username { get; set; }
     public required string Password { get; set; }

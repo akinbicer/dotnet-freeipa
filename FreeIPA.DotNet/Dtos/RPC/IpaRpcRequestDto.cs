@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace FreeIPA.DotNet.Models.RPC;
+namespace FreeIPA.DotNet.Dtos.RPC;
 
-public class IpaRpcRequestModel
+public class IpaRpcRequestDto
 {
     [JsonProperty("id")] public required int Id { get; set; }
     [JsonProperty("method")] public required string Method { get; set; }

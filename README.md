@@ -44,9 +44,9 @@ When creating a client, provide the base URL of your FreeIPA server.
 ### Logging in with Password
 
 ```csharp
-using FreeIPA.DotNet.Models.Login;
+using FreeIPA.DotNet.Dtos.Login;
 
-var loginResult = await ipaClient.LoginWithPassword(new IpaLoginRequestModel
+var loginResult = await ipaClient.LoginWithPassword(new IpaLoginRequestDto
 {
     Username = "admin",
     Password = "password123"
@@ -69,9 +69,9 @@ To log in with a password, use the `LoginWithPassword` method. If the login is s
 ### Sending an RPC Request
 
 ```csharp
-using FreeIPA.DotNet.Models.RPC;
+using FreeIPA.DotNet.Dtos.RPC;
 
-var rpcRequest = new IpaRpcRequestModel
+var rpcRequest = new IpaRpcRequestDto
 {
     Method = "env",
     Parameters = new object[] { Array.Empty<string>(), new { } },

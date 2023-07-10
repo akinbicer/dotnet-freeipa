@@ -1,6 +1,6 @@
-﻿namespace FreeIPA.DotNet.Models.User;
+﻿namespace FreeIPA.DotNet.Dtos.User.Create;
 
-public class IpaCreateUserRequestModel
+public class IpaCreateUserRequestDto
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
