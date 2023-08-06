@@ -8,9 +8,9 @@ You can add FreeIPA.DotNet to your project using the NuGet package manager. Sear
 
 Alternatively, you can use the .NET CLI to add the library to your project by running the following command:
 
-[![NuGet latest release](https://img.shields.io/nuget/v/FreeIPA.DotNet.svg)](https://www.nuget.org/packages/FreeIPA.DotNet)
+[![NuGet latest release](https://img.shields.io/nuget/v/FreeIPA.DotNet.svg)](https://www.nuget.org/packages/FreeIPA.DotNet/1.0.0)
 
-You can add this library to your project using [NuGet](https://www.nuget.org/packages/FreeIPA.DotNet).
+You can add this library to your project using [NuGet](https://www.nuget.org/packages/FreeIPA.DotNet/1.0.0).
 
 **Package Manager Console**
 Run the following command in the “Package Manager Console”:
@@ -19,7 +19,7 @@ Run the following command in the “Package Manager Console”:
 
 **Visual Studio**
 Right click to your project in Visual Studio, choose “Manage NuGet Packages” and search for ‘FreeIPA.DotNet’ and click ‘Install’.
-([see NuGet Gallery](https://www.nuget.org/packages/FreeIPA.DotNet)...)
+([see NuGet Gallery](https://www.nuget.org/packages/FreeIPA.DotNet/1.0.0)...)
 
 **.NET Core Command Line Interface**
 Run the following command from your favorite shell or terminal:
